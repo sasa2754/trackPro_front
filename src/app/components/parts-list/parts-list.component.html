@@ -1,0 +1,47 @@
+<div class="p-4">
+    <h2 class="text-2xl font-bold mb-4">Lista de Peças</h2>
+
+    <button pButton routerLink="/parts/new"
+        class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-500 mb-4 flex gap-2 items-center transition-all duration-100 active:scale-95">
+        <i class="pi pi-plus" style="color: white" pButtonIcon></i>
+        <span pButtonLabel>Adicionar</span>
+    </button>
+    <div *ngIf="error" class="bg-red-100 text-red-700 p-4 rounded mb-4">{{ error }}</div>
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white shadow-md rounded">
+            <thead class="bg-gray-200">
+                <tr>
+                    <th class="p-3 text-left">Código</th>
+                    <th class="p-3 text-left">Nome</th>
+                    <th class="p-3 text-left">Status</th>
+                    <th class="p-3 text-left">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let part of parts" class="border-b">
+                    <td class="p-3">{{ part.code }}</td>
+                    <td class="p-3">{{ part.description }}</td>
+                    <td class="p-3">{{ part.status }}</td>
+                    <td class="p-3 space-x-2 flex items-center">
+                        <button pButton (click)="editPart(part.code)"
+                            class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-400 mb-4 flex gap-2 items-center transition-all duration-100 active:scale-95">
+                            <i class="pi pi-pencil" style="color: white" pButtonIcon></i>
+                        </button>
+                        <button pButton (click)="movePart(part.code)"
+                            class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-400 mb-4 flex gap-2 items-center transition-all duration-100 active:scale-95">
+                            <i class="pi pi-truck" style="color: white" pButtonIcon></i>
+                        </button>
+                        <button pButton (click)="viewHistory(part.code)"
+                            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 mb-4 flex gap-2 items-center transition-all duration-100 active:scale-95">
+                            <i class="pi pi-history" style="color: white" pButtonIcon></i>
+                        </button>
+                        <button pButton (click)="deletePart(part.code)"
+                            class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-500 mb-4 flex gap-2 items-center transition-all duration-100 active:scale-95">
+                            <i class="pi pi-trash" style="color: white" pButtonIcon></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

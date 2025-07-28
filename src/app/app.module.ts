@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from './services/api.service';
-import { PartsListComponent } from './components/parts-list/parts-list.component';
 
 @NgModule({
   declarations: [AppComponent],
