@@ -55,6 +55,12 @@ export class ApiService {
     );
   }
 
+  movePart(code: string, responsible: string): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/api/Parts/${code}/move`, { responsible }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'An error occurred';
     if (error.error instanceof ErrorEvent) {

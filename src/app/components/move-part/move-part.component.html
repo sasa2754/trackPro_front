@@ -1,0 +1,48 @@
+<div class="p-4 space-y-6">
+  <h2 class="text-2xl font-bold">Mover Peça</h2>
+
+  <div *ngIf="error" class="bg-red-100 text-red-700 p-4 rounded-md">{{ error }}</div>
+
+  <div *ngIf="part" class="bg-gray-100 p-4 rounded-md space-y-2">
+    <p><strong>Código:</strong> {{ part.code }}</p>
+    <p><strong>Descrição:</strong> {{ part.description }}</p>
+    <p><strong>Estação Atual:</strong> {{ part.currentStationName }}</p>
+    <p><strong>Status:</strong> {{ part.status }}</p>
+  </div>
+
+  <form [formGroup]="moveForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <div>
+      <label for="responsible" class="block text-sm font-medium mb-1">Responsável</label>
+      <input
+        id="responsible"
+        formControlName="responsible"
+        type="text"
+        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-teal-500 focus:border-teal-500"
+        [ngClass]="{ 'border-red-500': moveForm.get('responsible')?.invalid && moveForm.get('responsible')?.touched }"
+      />
+      <div *ngIf="moveForm.get('responsible')?.invalid && moveForm.get('responsible')?.touched" class="text-red-500 text-sm mt-1">
+        Campo obrigatório
+      </div>
+    </div>
+
+    <div class="flex gap-4">
+      <button
+        type="submit"
+        [disabled]="moveForm.invalid"
+        class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-500 flex items-center gap-2 transition-all duration-100 active:scale-95 disabled:bg-gray-400"
+      >
+        <i class="pi pi-forward text-white"></i>
+        <span>Mover</span>
+      </button>
+
+      <button
+        type="button"
+        (click)="cancel()"
+        class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 flex items-center gap-2 transition-all duration-100 active:scale-95"
+      >
+        <i class="pi pi-times text-gray-700"></i>
+        <span>Cancelar</span>
+      </button>
+    </div>
+  </form>
+</div>

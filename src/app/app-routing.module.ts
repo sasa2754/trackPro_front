@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PartsListComponent } from './components/parts-list/parts-list.component';
 import { PartFormComponent } from './components/part-form/part-form.component';
+import { MovePartComponent } from './components/move-part/move-part.component';
 
 
 const routes: Routes = [
@@ -9,6 +10,8 @@ const routes: Routes = [
   { path: 'parts', component: PartsListComponent },
   { path: 'parts/new', component: PartFormComponent },
   { path: 'parts/edit/:code', component: PartFormComponent },
+  { path: 'parts/move/:code', component: MovePartComponent },
+
 ];
 
 @NgModule({
