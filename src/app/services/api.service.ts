@@ -9,6 +9,13 @@ export interface PartListDto {
   status: string;
 }
 
+export interface PartDetailDto {
+  code: string;
+  description: string;
+  status: string;
+  currentStationName: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,6 +33,24 @@ export class ApiService {
 
   deletePart(code: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/api/Parts/${code}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getPart(code: string): Observable<PartDetailDto> {
+    return this.http.get<PartDetailDto>(`${this.apiUrl}/api/Parts/${code}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  createPart(part: { code: string; description: string; responsible: string }): Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}/api/Parts`, part).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  updatePart(code: string, description: string): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/api/Parts/${code}`, { description }).pipe(
       catchError(this.handleError)
     );
   }

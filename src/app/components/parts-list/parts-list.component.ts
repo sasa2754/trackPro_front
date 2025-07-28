@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService, PartListDto } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -11,10 +11,11 @@ import { RouterModule } from '@angular/router';
   templateUrl: './parts-list.component.html',
   providers: [ApiService]
 })
-
 export class PartsListComponent implements OnInit {
   parts: PartListDto[] = [];
   error: string | null = null;
+  showDeleteModal: boolean = false;
+  partToDelete: string | null = null;
 
   constructor(private apiService: ApiService, private router: Router) {}
 
@@ -37,13 +38,27 @@ export class PartsListComponent implements OnInit {
     this.router.navigate(['/parts/history', code]);
   }
 
-  deletePart(code: string): void {
-    if (confirm('Are you sure you want to delete this part?')) {
-      this.apiService.deletePart(code).subscribe({
+  openDeleteModal(code: string): void {
+    this.partToDelete = code;
+    this.showDeleteModal = true;
+  }
+
+  closeDeleteModal(): void {
+    this.showDeleteModal = false;
+    this.partToDelete = null;
+  }
+
+  confirmDelete(): void {
+    if (this.partToDelete) {
+      this.apiService.deletePart(this.partToDelete).subscribe({
         next: () => {
-          this.parts = this.parts.filter((part) => part.code !== code);
+          this.parts = this.parts.filter((part) => part.code !== this.partToDelete);
+          this.closeDeleteModal();
         },
-        error: (err) => (this.error = err.message),
+        error: (err) => {
+          this.error = err.message;
+          this.closeDeleteModal();
+        },
       });
     }
   }
