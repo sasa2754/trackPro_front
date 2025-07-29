@@ -59,7 +59,7 @@ export class PartFormComponent implements OnInit {
     }
 
     const handleError = (err: any) => {
-      this.error = err?.error?.error || 'Erro ao criar uma nova peça. Já existe uma peça com esse código!';
+      this.error = err?.error?.error || 'Erro ao criar uma nova Peça. Já existe uma peça com esse código!';
     };
 
     if (this.isEditMode && this.code) {

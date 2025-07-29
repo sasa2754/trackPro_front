@@ -104,6 +104,12 @@ export class ApiService {
     );
   }
 
+  updateStation(id: number, station: { name: string; order: number }): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/api/Stations/${id}`, { id, ...station }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'An error occurred';
     if (error.error instanceof ErrorEvent) {

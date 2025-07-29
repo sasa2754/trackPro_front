@@ -1,0 +1,53 @@
+<div class="p-4">
+  <h2 class="text-2xl font-bold mb-4">{{ isEditMode ? 'Editar Estação' : 'Adicionar nova Estação' }}</h2>
+
+  <div *ngIf="error" class="bg-red-100 text-red-700 p-4 rounded mb-4">{{ error }}</div>
+
+  <form [formGroup]="stationForm" (ngSubmit)="onSubmit()" class="space-y-4">
+
+    <div>
+      <label for="name" class="block text-sm font-medium text-gray-700">Nome</label>
+      <input
+        id="name"
+        formControlName="name"
+        type="text"
+        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
+        [ngClass]="{'border-red-500': stationForm.get('name')?.invalid && stationForm.get('name')?.touched}"
+      />
+      <div *ngIf="stationForm.get('name')?.invalid && stationForm.get('name')?.touched" class="text-red-500 text-sm">
+        Nome é obrigatório
+      </div>
+    </div>
+
+    <div>
+      <label for="order" class="block text-sm font-medium text-gray-700">Ordem</label>
+      <input
+        id="order"
+        formControlName="order"
+        type="number"
+        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
+        [ngClass]="{'border-red-500': stationForm.get('order')?.invalid && stationForm.get('order')?.touched}"
+      />
+      <div *ngIf="stationForm.get('order')?.invalid && stationForm.get('order')?.touched" class="text-red-500 text-sm">
+        Ordem deve ser um número não negativo
+      </div>
+    </div>
+
+    <div class="flex space-x-4">
+      <button
+        type="submit"
+        [disabled]="stationForm.invalid"
+        class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-500 flex gap-2 items-center transition-all duration-100 active:scale-95"
+      >
+        {{ isEditMode ? 'Atualizar' : 'Criar' }}
+      </button>
+
+      <button type="button" (click)="cancel()"
+        class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 flex gap-2 items-center transition-all duration-100 active:scale-95"
+      >
+        Cancelar
+      </button>
+    </div>
+
+  </form>
+</div>

@@ -41,6 +41,10 @@ export class StationsListComponent implements OnInit {
   }
 
   confirmDelete(): void {
+    const handleError = (err: any) => {
+      this.error = err?.error?.error || 'Erro ao apagar a estação. Existem peças vinculadas a ela!';
+    };
+
     if (this.stationToDelete !== null) {
       this.apiService.deleteStation(this.stationToDelete).subscribe({
         next: () => {
@@ -48,10 +52,11 @@ export class StationsListComponent implements OnInit {
           this.closeDeleteModal();
         },
         error: (err) => {
-          this.error = err.message;
+          handleError(err);
           this.closeDeleteModal();
         }
       });
     }
   }
+
 }

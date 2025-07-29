@@ -5,7 +5,7 @@ import { PartFormComponent } from './components/part-form/part-form.component';
 import { MovePartComponent } from './components/move-part/move-part.component';
 import { PartHistoryComponent } from './components/part-history/part-history.component';
 import { StationsListComponent } from './components/station-list/station-list.component';
-
+import { StationFormComponent } from './components/station-form/station-form.component';
 
 
 const routes: Routes = [
@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'parts/move/:code', component: MovePartComponent },
   { path: 'parts/history/:code', component: PartHistoryComponent },
   { path: 'stations', component: StationsListComponent },
-
+  { path: 'stations/new', component: StationFormComponent },
+  { path: 'stations/edit/:id', component: StationFormComponent },
 ];
 
 @NgModule({
