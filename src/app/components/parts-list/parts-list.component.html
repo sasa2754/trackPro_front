@@ -28,8 +28,10 @@
                 <i class="pi pi-pencil" style="color: white" pButtonIcon></i>
             </button>
             <button pButton (click)="movePart(part.code)"
-                class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-400 mb-4 flex gap-2 items-center transition-all duration-100 active:scale-95">
-                <i class="pi pi-truck" style="color: white" pButtonIcon></i>
+              [disabled]="part.status === 'Finalizada'"
+              class="bg-green-500 text-white px-4 py-2 rounded mb-4 flex gap-2 items-center transition-all duration-100 active:scale-95
+                    hover:bg-green-400 disabled:bg-gray-300 disabled:cursor-not-allowed">
+              <i class="pi pi-truck" style="color: white" pButtonIcon></i>
             </button>
             <button pButton (click)="viewHistory(part.code)"
                 class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 mb-4 flex gap-2 items-center transition-all duration-100 active:scale-95">

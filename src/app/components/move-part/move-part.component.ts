@@ -40,15 +40,21 @@ export class MovePartComponent implements OnInit {
   cancel(): void {
     this.router.navigate(['/parts']);
   }
+
+
   onSubmit(): void {
     if (this.moveForm.invalid || !this.code) {
       this.moveForm.markAllAsTouched();
       return;
     }
 
+    const handleError = (err: any) => {
+      this.error = err?.error?.error || 'Erro ao mover peça. As transações foram finalizadas!';
+    };
+
     this.apiService.movePart(this.code, this.moveForm.value.responsible).subscribe({
       next: () => this.router.navigate(['/parts']),
-      error: (err) => (this.error = err.message),
+      error: handleError,
     });
   }
 }

@@ -23,6 +23,12 @@ export interface MovementHistoryDto {
   responsible: string;
 }
 
+export interface StationListDto {
+  id: number;
+  name: string;
+  order: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -70,6 +76,30 @@ export class ApiService {
 
   getPartHistory(code: string): Observable<MovementHistoryDto[]> {
     return this.http.get<MovementHistoryDto[]>(`${this.apiUrl}/api/Parts/${code}/history`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getStations(): Observable<StationListDto[]> {
+    return this.http.get<StationListDto[]>(`${this.apiUrl}/api/Stations`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getStation(id: number): Observable<StationListDto> {
+    return this.http.get<StationListDto>(`${this.apiUrl}/api/Stations/${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  createStation(station: { name: string; order: number }): Observable<number> {
+    return this.http.post<number>(`${this.apiUrl}/api/Stations`, station).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteStation(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/api/Stations/${id}`).pipe(
       catchError(this.handleError)
     );
   }

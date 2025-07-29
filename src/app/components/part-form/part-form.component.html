@@ -1,5 +1,5 @@
 <div class="p-4">
-  <h2 class="text-2xl font-bold mb-4">{{ isEditMode ? 'Edit Part' : 'Add New Part' }}</h2>
+  <h2 class="text-2xl font-bold mb-4">{{ isEditMode ? 'Editar Peça' : 'Adicionar nova Peça' }}</h2>
   <div *ngIf="error" class="bg-red-100 text-red-700 p-4 rounded mb-4">{{ error }}</div>
   <form [formGroup]="partForm" (ngSubmit)="onSubmit()" class="space-y-4">
     <div>
