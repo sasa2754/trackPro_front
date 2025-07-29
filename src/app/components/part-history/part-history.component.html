@@ -1,0 +1,31 @@
+<div class="p-4">
+  <h2 class="text-2xl font-bold mb-4">Histórico da Peça - {{ code }}</h2>
+
+  <a routerLink="/parts" class="inline-flex items-center bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 mb-4 transition-all duration-100 active:scale-95">
+    <i class="pi pi-arrow-left mr-2 text-white"></i>
+    <span>Voltar</span>
+  </a>
+
+  <div *ngIf="error" class="bg-red-100 text-red-700 p-4 rounded-md mb-4">{{ error }}</div>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white shadow-md rounded-md">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="p-3 text-left">Data</th>
+          <th class="p-3 text-left">Estação de Origem</th>
+          <th class="p-3 text-left">Estação de Destino</th>
+          <th class="p-3 text-left">Responsável</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movement of history" class="border-b">
+          <td class="p-3">{{ movement.date | date:'dd/MM/yyyy - HH:mm' }}</td>
+          <td class="p-3">{{ movement.originStationName || '-' }}</td>
+          <td class="p-3">{{ movement.destinationStationName }}</td>
+          <td class="p-3">{{ movement.responsible }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

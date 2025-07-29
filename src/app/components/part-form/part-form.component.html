@@ -8,7 +8,7 @@
         id="code"
         formControlName="code"
         type="text"
-        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
         [ngClass]="{'border-red-500': partForm.get('code')?.invalid && partForm.get('code')?.touched}"
       />
       <div *ngIf="partForm.get('code')?.invalid && partForm.get('code')?.touched" class="text-red-500 text-sm">
@@ -21,7 +21,7 @@
         id="description"
         formControlName="description"
         type="text"
-        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
         [ngClass]="{'border-red-500': partForm.get('description')?.invalid && partForm.get('description')?.touched}"
       />
       <div *ngIf="partForm.get('description')?.invalid && partForm.get('description')?.touched" class="text-red-500 text-sm">
@@ -34,7 +34,7 @@
         id="responsible"
         formControlName="responsible"
         type="text"
-        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
         [ngClass]="{'border-red-500': partForm.get('responsible')?.invalid && partForm.get('responsible')?.touched}"
       />
       <div *ngIf="partForm.get('responsible')?.invalid && partForm.get('responsible')?.touched" class="text-red-500 text-sm">

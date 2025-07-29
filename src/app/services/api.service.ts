@@ -16,6 +16,13 @@ export interface PartDetailDto {
   currentStationName: string;
 }
 
+export interface MovementHistoryDto {
+  date: string;
+  originStationName: string | null;
+  destinationStationName: string;
+  responsible: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -57,6 +64,12 @@ export class ApiService {
 
   movePart(code: string, responsible: string): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/api/Parts/${code}/move`, { responsible }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getPartHistory(code: string): Observable<MovementHistoryDto[]> {
+    return this.http.get<MovementHistoryDto[]>(`${this.apiUrl}/api/Parts/${code}/history`).pipe(
       catchError(this.handleError)
     );
   }

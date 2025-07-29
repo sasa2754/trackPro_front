@@ -58,15 +58,19 @@ export class PartFormComponent implements OnInit {
       return;
     }
 
+    const handleError = (err: any) => {
+      this.error = err?.error?.error || 'Erro ao criar uma nova peça.';
+    };
+
     if (this.isEditMode && this.code) {
       this.apiService.updatePart(this.code, this.partForm.value.description).subscribe({
         next: () => this.router.navigate(['/parts']),
-        error: (err) => (this.error = err.message),
+        error: handleError,
       });
     } else {
       this.apiService.createPart(this.partForm.value).subscribe({
         next: () => this.router.navigate(['/parts']),
-        error: (err) => (this.error = err.message),
+        error: handleError,
       });
     }
   }
