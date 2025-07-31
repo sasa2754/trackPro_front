@@ -1,59 +1,82 @@
-# TrackProFront
+# TrackPro - Interface Web (Frontend)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+**Status do Projeto:** Em Desenvolvimento
 
-## Development server
+## Sobre a Interface
 
-To start a local development server, run:
+Este projeto é a interface web do sistema de rastreabilidade de peças **TrackPro**. Desenvolvido com Angular, ele consome a API RESTful do backend para fornecer uma experiência de usuário rica, moderna e totalmente responsiva para o gerenciamento de peças e estações.
 
+O foco foi criar uma interface que não só seja funcional, mas também intuitiva, esteticamente agradável e que demonstre a aplicação de boas práticas de desenvolvimento frontend.
+
+## Funcionalidades
+
+A interface implementa todos os casos de uso definidos para o sistema:
+
+✅ **Gerenciamento de Estações**: Componentes para listar, criar, editar e deletar as estações do fluxo de processo.  
+✅ **Gerenciamento de Peças**: Funcionalidades completas de CRUD para as peças.  
+✅ **Movimentação de Peças**: Interface dedicada para avançar uma peça para a próxima estação, respeitando as regras de negócio validadas pelo backend.  
+✅ **Histórico de Rastreabilidade**: Visualização clara e detalhada de todo o histórico de movimentações de uma peça específica.  
+✅ **Feedback ao Usuário**: Uso de notificações (toasts) e diálogos de confirmação para uma experiência de usuário fluida e informativa.
+
+## Arquitetura e Tecnologias
+
+A aplicação foi construída utilizando as versões e práticas mais recentes do ecossistema Angular.
+
+- **Framework**: Angular 17+  
+- **Arquitetura**: *Standalone Components*, a abordagem moderna e simplificada para componentização, que elimina a necessidade de NgModules.  
+- **Estilização**: Uma combinação de:
+  - **Tailwind CSS**: Para um desenvolvimento rápido e consistente de layouts responsivos através de classes utilitárias.
+  - **PrimeNG**: Uma rica biblioteca de componentes de UI (tabelas, botões, modais, etc.) para garantir funcionalidades avançadas e um visual profissional.
+- **Comunicação com API**: A integração com o backend é feita através de *Serviços Angular*, que utilizam `HttpClient` para realizar as chamadas HTTP.
+- **Formulários**: Implementação de *Reactive Forms* para a criação de formulários robustos e com validação customizada.
+
+## Como Executar o Projeto
+
+Siga os passos abaixo para rodar a interface web localmente.
+
+### Pré-requisitos
+
+- Node.js e npm (versão LTS recomendada)
+- Angular CLI instalado globalmente:
 ```bash
-ng serve
+  npm install -g @angular/cli
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+* O backend do TrackPro deve estar em execução, pois a interface precisa da API para funcionar.
 
-## Code scaffolding
+### Passos para Execução
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. **Navegue para a pasta do projeto**:
 
-```bash
-ng generate component component-name
-```
+   ```bash
+   cd trackpro_front
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+2. **Instale as dependências**:
+   Este comando irá baixar todas as bibliotecas listadas no `package.json`.
 
-```bash
-ng generate --help
-```
+   ```bash
+   npm install
+   ```
 
-## Building
+3. **Configure a URL da API**:
+   Abra o arquivo `src/environments/environment.ts` e certifique-se de que a `apiUrl` corresponde ao endereço e porta em que seu backend está rodando:
 
-To build the project run:
+   ```ts
+   export const environment = {
+     production: false,
+     apiUrl: 'http://localhost:5147',
+   };
+   ```
 
-```bash
-ng build
-```
+4. **Inicie o servidor de desenvolvimento**:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+   ```bash
+   ng serve
+   ```
 
-## Running unit tests
+5. **Acesse a aplicação**:
+   Abra seu navegador e acesse:
+   [http://localhost:5147/](http://localhost:5147/)
+   A aplicação estará disponível e pronta para uso.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
